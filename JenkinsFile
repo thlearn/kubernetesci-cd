@@ -13,6 +13,12 @@ node{
         sh "echo $MAVEN_HOME"
         sh "/var/jenkins_home/apache-maven-3.6.1/bin/mvn clean install"
       }
+  stage('Docker Build, Push'){    
+         withDockerRegistry(credentialsId: 'f45c144e-1741-4c97-85b2-9953ed00c44e', url: 'https://registry.gitlab.com') {
+             sh "docker build -t mytomcat:1.0 ."
+             sh "docker push mytomcat"
+      }
+      }
      } catch (err) {
       currentBuild.result = 'FAILURE'
     }
