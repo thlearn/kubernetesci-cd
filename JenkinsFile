@@ -13,10 +13,10 @@ node{
         sh "echo $MAVEN_HOME"
         sh "/var/jenkins_home/apache-maven-3.6.1/bin/mvn clean install"
       }
-  stage('Docker Build, Push'){    
-             sh "docker login -u hareshgitlab -p Newyear!2019  https://registry.gitlab.com"
-             sh "docker pull test1:1.0"
-             
+  stage('Docker Build, Push'){   
+             withDockerRegistry(credentialsId: 'docker', url: 'https://registry.gitlab.com') {
+             sh "docker pull registry.gitlab.com/hareshgitlab/mydockerregistry/test1:1.0"
+             }
       
       }
      } catch (err) {
