@@ -7,6 +7,9 @@ node{
       checkout scm
       }
   stage('compile'){
+  
+      echo $JAVA_HOME
+      echo $MAVEN_HOME
       sh "mvn clean install"
       }
      } catch (err) {
