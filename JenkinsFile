@@ -15,7 +15,10 @@ node{
       }
   stage('Docker Build, Push'){   
              withDockerRegistry(credentialsId: 'docker', url: 'https://registry.gitlab.com') {
-             sh "docker pull registry.gitlab.com/hareshgitlab/mydockerregistry/test1:1.0"
+             
+             sh "docker build -t  registry.gitlab.com/hareshgitlab/mydockerregistry/mytomcat:1.0 ."
+             sh "docker push  registry.gitlab.com/hareshgitlab/mydockerregistry/mytomcat:1.0 "
+             
              }
       
       }
