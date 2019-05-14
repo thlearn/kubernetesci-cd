@@ -5,12 +5,11 @@ node{
   try{
   stage('Checkout'){
       checkout scm
+      echo $JAVA_HOME
       }
   stage('compile'){
   
-      echo $JAVA_HOME
-      echo $MAVEN_HOME
-      sh "mvn clean install"
+        sh "mvn clean install"
       }
      } catch (err) {
       currentBuild.result = 'FAILURE'
