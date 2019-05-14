@@ -5,7 +5,7 @@ node{
   try{
   stage('Checkout'){
       checkout scm
-      echo $JAVA_HOME
+     
       }
   stage('compile'){
   
