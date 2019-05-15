@@ -24,7 +24,7 @@ node{
       }
       
   stage("Deploy to Kubernetes"){
-      sh "kubec get pod"
+      sh "kubectl get pod"
   }
      } catch (err) {
       currentBuild.result = 'FAILURE'
