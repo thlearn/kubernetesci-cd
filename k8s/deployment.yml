@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mytomcat
-        image: registry.gitlab.com/hareshgitlab/mydockerregistry/mytomcat:1.0
+        image: registry.gitlab.com/hareshgitlab/mydockerregistry/mytomcat:1.2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
