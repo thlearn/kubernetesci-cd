@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mytomcat-nodeport
+  labels:
+    run: mytomcat-nodeport
+spec:
+  ports:
+  - port: 8080  
+    protocol: TCP
+    nodePort: 30001
+  selector:
+    app: mytomcat
+  type: NodePort
