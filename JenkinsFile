@@ -23,9 +23,12 @@ node{
       
       }
       
-  stage("Deploy to Kubernetes"){
+  stage("delete existing K8s deployment"){
       sh "kubectl delete -f k8s/deployment.yml"
       sh "kubectl delete -f k8s/nodeportsvc.yml"
+  }      
+      
+  stage("Deploy to Kubernetes"){
       sh "kubectl create -f k8s/deployment.yml"
       sh "kubectl create -f k8s/nodeportsvc.yml"
   }
