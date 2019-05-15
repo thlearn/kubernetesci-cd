@@ -24,8 +24,8 @@ node{
       }
       
   stage("Deploy to Kubernetes"){
-      sh "kubectl delete -f k8s/deployment.yml
-      sh "kubectl delete -f k8s/nodeportsvc.yml
+      sh "kubectl delete -f k8s/deployment.yml"
+      sh "kubectl delete -f k8s/nodeportsvc.yml"
       sh "kubectl create -f k8s/deployment.yml"
       sh "kubectl create -f k8s/nodeportsvc.yml"
   }
