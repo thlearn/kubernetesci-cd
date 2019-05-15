@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mytomcat 
+  labels:
+    app: mytomcat
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: mytomcat
+  template:
+    metadata:
+      labels:
+        app: mytomcat
+    spec:
+      containers:
+      - name: mytomcat
+        image: registry.gitlab.com/hareshgitlab/mydockerregistry/mytomcat:1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+      tolerations:
+      - operator: Exists
+        effect: NoExecute
+      - operator: Exists
+        effect: NoSchedule
