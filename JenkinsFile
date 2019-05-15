@@ -24,7 +24,8 @@ node{
       }
       
   stage("Deploy to Kubernetes"){
-      sh "kubectl get pod"
+      sh "kubectl create -f k8s/deployment.yml"
+      sh "kubectl create -f k8s/nodeportsvc.yml"
   }
      } catch (err) {
       currentBuild.result = 'FAILURE'
