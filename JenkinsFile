@@ -1,7 +1,5 @@
 node{
-  def Namespace = "default"
-  def ImageName = "sayarapp/sayarapp"
-  def Creds = "2dfd9d0d-a300-49ee-aaaf-0a3efcaa5279"
+  
   try{
   stage('Checkout'){
       checkout scm
