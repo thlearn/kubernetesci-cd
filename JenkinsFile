@@ -14,7 +14,7 @@ node{
        }
      } 
  stage("Deploy to Kubernetes"){
-      kubernetesDeploy( configs: 'k8s/deployment.yml,k8s/nodeportsvc.yml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig')
+      kubernetesDeploy( configs: 'k8s/deployment.yml,k8s/nodeportsvc.yml', kubeConfig: [path: ''], kubeconfigId: 'k8s_deploy')
       
   }
 
