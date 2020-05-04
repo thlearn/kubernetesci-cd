@@ -10,7 +10,7 @@ node{
         sh "echo $JAVA_HOME"
         sh "echo $MAVEN_HOME"
         sh "mvn clean install"
-        sh "cp target/* /var/test/jenkins-slave/"
+        sh "cp target/*.war /var/test/jenkins-slave/"
       }
   
      } catch (err) {
