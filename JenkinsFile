@@ -9,7 +9,7 @@ node{
   
         sh "echo $JAVA_HOME"
         sh "echo $MAVEN_HOME"
-        sh "/var/jenkins_home/apache-maven-3.6.1/bin/mvn clean install"
+        sh "mvn clean install"
       }
   
      } catch (err) {
