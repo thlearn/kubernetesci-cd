@@ -11,6 +11,8 @@ node{
         sh "echo $MAVEN_HOME"
         sh "mvn clean install"
         sh "cp target/*.war /var/test/jenkins-slave/"
+        sh "docker -H 10.0.103.101:2375 ps"
+        
       }
   
      } catch (err) {
