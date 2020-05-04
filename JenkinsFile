@@ -8,10 +8,10 @@ node{
         sh "mvn clean install"
        }
   stage('Docker Build, Push'){   
-             withDockerRegistry(credentialsId: 'docker') {
+          
 	     sh "docker -H 10.0.103.101:2375 build -t  hareshdocker/eksdemotomcat:1.0 ."
              sh "docker -H 10.0.103.101:2375 push  hareshdocker/eksdemotomcat:1.0"
-         }
+       
      } 
 	 }catch (err) {
       currentBuild.result = 'FAILURE'
