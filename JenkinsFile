@@ -14,7 +14,8 @@ node{
        }
      } 
  stage("Deploy to Kubernetes"){
-           sh "kubectl apply -f k8s/deployment.yml k8s/nodeportsvc.yml"
+           sh "kubectl apply -f k8s/deployment.yml"
+	   sh "kubectl apply -f k8s/nodeportsvc.yml"
       
   }
 
