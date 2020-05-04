@@ -11,25 +11,7 @@ node{
         sh "echo $MAVEN_HOME"
         sh "/var/jenkins_home/apache-maven-3.6.1/bin/mvn clean install"
       }
-  stage('Docker Build, Push'){   
-             withDockerRegistry(credentialsId: 'docker', url: 'https://registry.gitlab.com') {
-             
-             sh "docker build -t  registry.gitlab.com/hareshgitlab/mydockerregistry/mytomcat:1.2 ."
-             sh "docker push  registry.gitlab.com/hareshgitlab/mydockerregistry/mytomcat:1.2 "
-             
-             }
-      
-      }
-      
-  stage("delete existing K8s deployment"){
-      sh "kubectl delete -f k8s/deployment.yml"
-      sh "kubectl delete -f k8s/nodeportsvc.yml"
-  }      
-      
-  stage("Deploy to Kubernetes"){
-      sh "kubectl create -f k8s/deployment.yml"
-      sh "kubectl create -f k8s/nodeportsvc.yml"
-  }
+  
      } catch (err) {
       currentBuild.result = 'FAILURE'
     }
