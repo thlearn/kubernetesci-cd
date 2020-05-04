@@ -9,10 +9,15 @@ node{
        }
   stage('Docker Build, Push'){   
            withDockerRegistry(credentialsId: 'docker') {
-	     sh "docker -H 10.0.103.101:2375 build -t  hareshdocker/eksdemotomcat:1.0 ."
-             sh "docker -H 10.0.103.101:2375 push  hareshdocker/eksdemotomcat:1.0"
+	     sh "docker -H 10.0.103.101:2375 build -t  hareshdocker/eksdemotomcat:$BUILD_NUMBER ."
+             sh "docker -H 10.0.103.101:2375 push  hareshdocker/eksdemotomcat:$BUILD_NUMBER"
        }
      } 
+ stage("Deploy to Kubernetes"){
+      kubernetesDeploy( configs: 'k8s/deployment.yml,k8s/nodeportsvc.yml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig')
+      
+  }
+
 	 }catch (err) {
       currentBuild.result = 'FAILURE'
     }
