@@ -9,8 +9,8 @@ node{
        }
   stage('Docker Build, Push'){   
           
-	     sh "docker -H 10.0.103.101:2375 build -t  hareshdocker/eksdemotomcat:1.0 ."
-             sh "docker -H 10.0.103.101:2375 push  hareshdocker/eksdemotomcat:1.0"
+	     sh "docker  build -t  hareshdocker/eksdemotomcat:1.0 ."
+             sh "docker  push  hareshdocker/eksdemotomcat:1.0"
        
      } 
 	 }catch (err) {
