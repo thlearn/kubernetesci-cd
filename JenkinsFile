@@ -3,21 +3,23 @@ node{
   try{
   stage('Checkout'){
       checkout scm
-     
-      }
+        }
   stage('compile'){
-  
         sh "echo $JAVA_HOME"
         sh "echo $MAVEN_HOME"
-        
-        
+        sh "mvn clean install"
+        sh "cp target/*.war /var/test/jenkins-slave/"
       }
-      stage('compile'){
+      stage('Build Docker Image'){
       withDockerServer([uri: 'tcp://10.0.103.101:2375']) {
-       sh "docker ps"
+       sh "docker build -t  hareshdocker/eksdemotomcat:1.0 ."
      }
      }
-  
+    stage('Docker Build, Push'){   
+             withDockerRegistry(credentialsId: 'docker') {
+             sh "docker push  hareshdocker/eksdemotomcat:1.0"
+             
+             }
      } catch (err) {
       currentBuild.result = 'FAILURE'
     }
