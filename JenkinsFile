@@ -4,17 +4,9 @@ node{
   stage('Checkout'){
       checkout scm
         }
-  stage('compile'){
-        sh "mvn clean install"
-       }
-  stage('Docker Build, Push'){   
-           withDockerRegistry(credentialsId: 'docker') {
-	     sh "docker -H 10.0.103.101:2375 build -t  hareshdocker/eksdemotomcat:$BUILD_NUMBER ."
-             sh "docker -H 10.0.103.101:2375 push  hareshdocker/eksdemotomcat:$BUILD_NUMBER"
-       }
-     } 
+  
  stage("Deploy to Kubernetes"){
-          kubernetesDeploy( configs: 'k8s/deployment.yml,k8s/nodeportsvc.yml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig')
+          kubernetesDeploy( configs: 'k8s/deployment.yml,k8s/nodeportsvc.yml', kubeConfig: [path: ''], kubeconfigId: 'k8s_deploy')
       
   }
 
