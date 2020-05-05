@@ -6,7 +6,9 @@ node{
         }
   
  stage("Deploy to Kubernetes"){
-          kubernetesDeploy( configs: 'k8s/deployment.yml,k8s/nodeportsvc.yml', kubeConfig: [path: ''], kubeconfigId: 'k8s_deploy')
+          sh "sed -i 's/BUILD_NUMBER/$BUILD_NUMBER/g' k8s/deployment.yml"
+	  sh "kubectl apply -f k8s/deployment.yml"
+	  
       
   }
 
