@@ -10,7 +10,7 @@ public class HelloWorldService {
 	@Path("/{param}")
 	public Response getMsg(@PathParam("param") String msg) {
   
-     String output = "Echo from rest API  "  + msg;
+     String output = "Echo from rest API test  "  + msg;
  
 		return Response.status(200).entity(output).build();
  
