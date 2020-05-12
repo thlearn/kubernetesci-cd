@@ -9,8 +9,8 @@ node{
        }
   stage('Docker Build, Push'){   
            withDockerRegistry(credentialsId: 'docker') {
-	     sh "docker -H  build -t  hareshdocker/eksdemotomcat:$BUILD_NUMBER ."
-             sh "docker -H  push  hareshdocker/eksdemotomcat:$BUILD_NUMBER"
+	     sh "docker  build -t  hareshdocker/eksdemotomcat:$BUILD_NUMBER ."
+             sh "docker  push  hareshdocker/eksdemotomcat:$BUILD_NUMBER"
        }
      } 
   stage("Deploy to Kubernetes"){
