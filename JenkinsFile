@@ -13,6 +13,13 @@ node{
              sh "docker  push  hareshdocker/eksdemotomcat:$BUILD_NUMBER"
        }
      } 
+     
+  stage('Scan docker Image'){   
+           def imageLine = 'hareshdocker/eksdemotomcat:$BUILD_NUMBER'
+           writeFile file: 'anchore_images', text: imageLine
+           anchore name: 'anchore_images'
+     }    
+   
   stage("Deploy to Kubernetes"){
           sh "sed -i 's/BUILD_NUMBER/$BUILD_NUMBER/g' k8s/deployment.yml"
 	  if (env.BRANCH_NAME == 'master') {
