@@ -15,9 +15,8 @@ node{
      } 
      
   stage('Scan docker Image'){   
-           def imageLine = 'hareshdocker/eksdemotomcat:$BUILD_NUMBER'
-           writeFile file: 'anchore_images', text: imageLine
-           anchore name: 'anchore_images'
+          sh 'echo "hareshdocker/eksdemotomcat:$BUILD_NUMBER `pwd`/Dockerfile" > anchore_images'
+          anchore name: 'anchore_images'
      }    
    
   stage("Deploy to Kubernetes"){
