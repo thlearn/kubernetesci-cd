@@ -14,7 +14,10 @@ node{
        }
      } 
      
-   
+  stage('Scan docker Image'){   
+          sh 'echo "hareshdocker/eksdemotomcat:$BUILD_NUMBER `pwd`/Dockerfile" > anchore_images'
+          anchore name: 'anchore_images'
+     } 
    
   stage("Deploy to Kubernetes"){
           sh "sed -i 's/BUILD_NUMBER/$BUILD_NUMBER/g' k8s/deployment.yml"
