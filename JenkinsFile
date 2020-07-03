@@ -1,32 +1,17 @@
 node{
-  
+  parameters{
+   string(name: 'imageName', defaultValue: 'test')
+  }
   try{
   stage('Checkout'){
       checkout scm
         }
   stage('compile'){
-        sh "mvn clean install"
+        echo $imageName
+        
        }
-  stage('Docker Build, Push'){   
-           withDockerRegistry(credentialsId: 'docker') {
-	     sh "docker  build -t  hareshdocker/eksdemotomcat:$BUILD_NUMBER ."
-             sh "docker  push  hareshdocker/eksdemotomcat:$BUILD_NUMBER"
-       }
-     } 
-  stage("Deploy to Kubernetes"){
-          sh "sed -i 's/BUILD_NUMBER/$BUILD_NUMBER/g' k8s/deployment.yml"
-	  if (env.BRANCH_NAME == 'master') {
-            sh 'kubectl config use-context eks-user@cluster-stg.us-east-1.eksctl.io'
-           } else {
-            sh 'kubectl config use-context eks-user@cluster-dev.us-east-1.eksctl.io'
-          }
-	  sh "kubectl apply -f k8s/deployment.yml"
-	  sh "kubectl apply -f k8s/nodeportsvc.yml"
-	  
-      
-  }
-
- 	 }catch (err) {
+  
+ }catch (err) {
       currentBuild.result = 'FAILURE'
     }
 }
