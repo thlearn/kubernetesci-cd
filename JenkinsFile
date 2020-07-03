@@ -4,15 +4,12 @@ agent none
   parameters{
    string(name: 'imageName', defaultValue: 'test')
   }
-  try{
-  
-  stage('compile'){
-        echo $imageName
-        
-       }
-  
- }catch (err) {
-      currentBuild.result = 'FAILURE'
+ 
+ stages{
+    stage("echo"){
+    
+    echo "$imageName"
     }
+  }
 }
 
