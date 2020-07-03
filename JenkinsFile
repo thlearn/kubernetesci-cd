@@ -1,16 +1,16 @@
 pipeline{
 agent none
-
-  parameters { string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '') }
- 
  stages{
-    stage("echo"){
-    steps{
-    echo "$DEPLOY_ENV"
-    }
-    
-    
-    }
+    stage("Start Master Pipeline"){
+      steps{
+        build job: 'Master_pipeline', parameters: [
+                string(name: 'DEPLOY_ENV', value: "development"),
+                string(name: 'APP_GIT_REPO', value: "https://github.com/thlearn/kubernetesci-cd.git")
+                string(name: 'APP_BRANCH_NAME', value: "BRANCH_NAME")
+                string(name: 'DOCKER_IMAGE_NAME', value: "eksdemotomcat")
+                ]
+        }
+     }
   }
 }
 
