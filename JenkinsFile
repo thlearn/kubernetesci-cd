@@ -3,7 +3,7 @@ agent none
  stages{
     stage("Start Master Pipeline"){
       steps{
-        build job: 'Master_pipeline', parameters: [
+        build job: 'Master_pipeline/master', propagate: true, wait: true, parameters: [
                 string(name: 'DEPLOY_ENV', value: "development"),
                 string(name: 'APP_GIT_REPO', value: "https://github.com/thlearn/kubernetesci-cd.git"),
                 string(name: 'APP_BRANCH_NAME', value: "BRANCH_NAME"),
