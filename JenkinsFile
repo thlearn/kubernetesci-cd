@@ -3,9 +3,7 @@ node{
    string(name: 'imageName', defaultValue: 'test')
   }
   try{
-  stage('Checkout'){
-      checkout scm
-        }
+  
   stage('compile'){
         echo $imageName
         
