@@ -1,14 +1,12 @@
 pipeline{
 agent none
 
-  parameters{
-   string(name: 'imageName', defaultValue: 'test')
-  }
+  parameters { string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '') }
  
  stages{
     stage("echo"){
     steps{
-    echo "$imageName"
+    echo "$DEPLOY_ENV"
     }
     
     
