@@ -1,4 +1,6 @@
-node{
+pipeline{
+agent none
+
   parameters{
    string(name: 'imageName', defaultValue: 'test')
   }
