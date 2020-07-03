@@ -7,8 +7,11 @@ agent none
  
  stages{
     stage("echo"){
-    
+    steps{
     echo "$imageName"
+    }
+    
+    
     }
   }
 }
