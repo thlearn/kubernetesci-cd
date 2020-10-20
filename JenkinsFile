@@ -5,9 +5,9 @@ node{
       checkout scm
         }
   stage('compile'){
-
+container('maven') {
         sh "mvn clean install"
-
+}
        }
   stage('Docker Build, Push'){   
            withDockerRegistry(credentialsId: 'docker') {
