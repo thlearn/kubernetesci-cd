@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mytomcat
-        image: hareshdocker/eksdemotomcat:BUILD_NUMBER
+        image: hareshdocker/eksdemotomcat:5
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
