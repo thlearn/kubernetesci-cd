@@ -8,7 +8,6 @@ spec:
   ports:
   - port: 8080  
     protocol: TCP
-    nodePort: 30002
   selector:
     app: mytomcat
   type: NodePort
