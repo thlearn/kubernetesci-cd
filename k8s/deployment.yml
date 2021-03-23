@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mytomcat 
+  name: demo-fluxcd 
   labels:
-    app: mytomcat
+    app: demo-fluxcd
 spec:
   replicas: 1
   selector: 
     matchLabels:
-      app: mytomcat
+      app: demo-fluxcd
   template:
     metadata:
       labels:
-        app: mytomcat
+        app: demo-fluxcd
     spec:
       containers:
-      - name: mytomcat
+      - name: demo-fluxcd
         image: hareshdocker/eksdemotomcat:6
         imagePullPolicy: IfNotPresent
         ports:
